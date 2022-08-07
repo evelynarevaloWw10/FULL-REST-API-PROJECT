@@ -4,7 +4,10 @@ import React, { useState, useEffect, useContext } from "react";
 
 export default function Courses() {
 
-   
+  
+  
+  
+    //https://magic.reactjs.net/htmltojsx.htm
 var NewComponent = React.createClass({
     render: function() {
       return (
