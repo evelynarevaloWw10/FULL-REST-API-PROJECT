@@ -19,7 +19,7 @@ const [course, setCourse]
 
 
 
-//https://magic.reactjs.net/htmltojsx.htm
+//https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
    var NewComponent = React.createClass({
     render: function() {
       return (
