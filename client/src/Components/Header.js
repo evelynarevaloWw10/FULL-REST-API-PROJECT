@@ -9,28 +9,36 @@ import UserSignIn from './UserSignIn';
 function Header () {
     const { context } = this.props;
     const authUser = context.authenticatedUser;    
-  
-  return  (
 
-      <div className="header">
-        <div className="bounds">
-          <h1 className="header--logo">MyAuth</h1>
-          <nav>
-            {authUser ? (
-              <React.Fragment>
-                <span>Welcome, {authUser.name}!</span>
-                <Link to="/signout">Sign Out</Link>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <Link className="signup" to="/signup">Sign Up</Link>
-                <Link className="signin" to="/signin">Sign In</Link>
-              </React.Fragment>
-            )}
-          </nav>
-        </div>
-      </div>
-     );
+
+    //https://magic.reactjs.net/htmltojsx.htm
+    var NewComponent = React.createClass({
+      render: function() {
+        return (
+    
+          <div classname="header">
+            <div classname="bounds">
+              <h1 classname="header--logo">MyAuth</h1>
+              <nav>
+                {'{'}authUser ? (
+                <react.fragment>
+                  <span>Welcome, {'{'}authUser.name{'}'}!</span>
+                  <link to="/signout" />Sign Out
+                </react.fragment>
+                ) : (
+                <react.fragment>
+                  <link classname="signup" to="/signup" />Sign Up
+                  <link classname="signin" to="/signin" />Sign In
+                </react.fragment>
+                ){'}'}
+              </nav>
+            </div>
+          </div>
+        );
+      }
+    });
+
+
    };
 
    export default Header;
