@@ -1,28 +1,22 @@
+// //Stateful Component 
 
-// main container components 
-
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect} from "react";
 
 
+export default function Courses() {
 
-function App() {
-
-
-
-
- //The effect happens after render
- useEffect(() => {   
- fetch('http://localhost:5000/api/courses')
- .then((res) => res.json())
- .then((data) => console.log(data));
-});
+   
+   
+   
+    useEffect(() => {   
+        fetch('http://localhost:5000/api/courses')
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+       });
 
 
-
- 
-  return (
-
+  
+    return(
 
 <body>
     <div id="root">
@@ -63,31 +57,5 @@ function App() {
     </div>
 </body>
 
-
-  );
-}
-
-export default App;
-
-
-
-
-
-
-
- // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+     )
+ }
