@@ -11,8 +11,9 @@ import Header from './Components/Header';
 import UserSignUp from './Components/UserSignUp';
 import UserSignIn from './Components/UserSignIn';
 import UserSignOut from './Components/UserSignOut';
-import Courses from './Components/Courses'
-//import CourseDetail from './Components/CourseDetail'
+import Courses from './Components/Courses';
+import CourseDetail from './Components/CourseDetail';
+
 
 import withContext from './Context';
 
@@ -21,7 +22,8 @@ const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CoursesWithContext = withContext(Courses)
-//const CourseDetailWithContext = withContext(CourseDetail);
+
+
 
 function App() {
 
@@ -35,7 +37,7 @@ function App() {
  .then((data) => console.log(data));
 });
 
-
+//Rohald helped with CourseDetail Route
 
  
   return (
@@ -47,6 +49,7 @@ function App() {
           <Route path='/signin' component={UserSignInWithContext}/>
           <Route path='/signout' component={UserSignOutWithContext}/>
           <Route path='/courses'component={CoursesWithContext}/>
+          <Route path='/courses/:id' component={CourseDetail}/>
          
         </Switch>
       </div>

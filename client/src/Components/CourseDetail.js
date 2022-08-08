@@ -1,46 +1,42 @@
 // //Stateful Component 
 
 
-import react from 'react';
+import React from 'react';
 
 import { 
-    Routes, 
-    Route,
+   // Routes, 
+   // Route,
      useParams 
 } from 'react-router-dom';
 
 
 
-
-export default function CourseDetail(){
+export default function CourseDetail(props){
     let {id} = useParams();
+ const findCourse = id => CourseDetail.find(course => course.id == id);
+
+
+getCourseDetail()
  
-
-
-
 
 //https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
 
       return (
     
-        <Route path="/courses/:id">
-       <h3>"Hello"</h3>
-   
-        </Route>
-    
-      )}
-        {/* <div id="root">
-          <header>
-            <div className="wrap header--flex">
+      
+     
+         <div id="root">
+        <header>
+          <div className="wrap header--flex">
               <h1 className="header--logo"><a href="index.html">Courses</a></h1>
-              <nav>
-                <ul className="header--signedin">
-                  <li>Welcome, Joe Smith!</li>
-                  <li><a href="sign-out.html">Sign Out</a></li>
+            <nav>
+              <ul className="header--signedin">
+                 <li>Welcome, Joe Smith!</li>
+                <li><a href="sign-out.html">Sign Out</a></li>
                 </ul>
-              </nav>
-            </div>
-          </header>
+             </nav>
+           </div>
+           </header>
           <main>
             <div className="actions--bar">
               <div className="wrap">
@@ -85,10 +81,8 @@ export default function CourseDetail(){
               </form>
             </div>
           </main>
-        </div> 
-        
-        </Routes>
-      );
-    
-      } */}
-    
+        </div>  
+
+       );
+
+    }
