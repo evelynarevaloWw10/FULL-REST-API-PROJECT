@@ -1,26 +1,26 @@
-// //Stateful Component 
+// // //Stateful Component 
+import React, { Component } from "react";
 
-import React, { useState, useEffect} from "react";
 
 
-export default function Courses() {
 
+export default class Courses extends Component {
+
+     
+  //   https://www.pluralsight.com/guides/fetching-data-updating-state-react-class
+
+    componentDidMount(){
+      fetch('http://localhost:5000/api/courses')
+      .then((res) => res.json())
+      .then(courses => {
+        this.setState({course: courses});
+      })
+
+    }
+    
    
-   
-   
-    useEffect(() => {   
-        fetch('http://localhost:5000/api/courses')
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-       });
-
-
-  //https://magic.reactjs.net/htmltojsx.htm
-  
-       var NewComponent = React.createClass({
-        render: function() {
-          return (
-      
+   render(){
+   return (
             <div id="root">
               <header>
                 <div className="wrap header--flex">
@@ -56,7 +56,15 @@ export default function Courses() {
                 </div>
               </main>
             </div>
-          );
+            )
+           } 
         }
-      });
- }
+    
+   
+   
+
+
+  //https://magic.reactjs.net/htmltojsx.htm
+  
+
+            

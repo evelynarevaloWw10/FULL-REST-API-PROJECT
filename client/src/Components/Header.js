@@ -1,44 +1,43 @@
-//Stateless Component
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import UserSignUp from './UserSignUp'; 
-import UserSignIn from './UserSignIn';
-
-
-function Header () {
-    const { context } = this.props;
-    const authUser = context.authenticatedUser;    
-
-
-    //https://magic.reactjs.net/htmltojsx.htm
-    var NewComponent = React.createClass({
-      render: function() {
-        return (
-    
-          <div classname="header">
-            <div classname="bounds">
-              <h1 classname="header--logo">MyAuth</h1>
-              <nav>
-                {'{'}authUser ? (
-                <react.fragment>
-                  <span>Welcome, {'{'}authUser.name{'}'}!</span>
-                  <link to="/signout" />Sign Out
-                </react.fragment>
-                ) : (
-                <react.fragment>
-                  <link classname="signup" to="/signup" />Sign Up
-                  <link classname="signin" to="/signin" />Sign In
-                </react.fragment>
-                ){'}'}
-              </nav>
-            </div>
-          </div>
-        );
-      }
-    });
-
-
-   };
-
-   export default Header;
+   import React from "react";
+   import { Link } from "react-router-dom";
+   
+   export default class Header extends React.PureComponent {
+     render() {
+       const { context } = this.props;
+       const authUser = context.authenticatedUser;
+   
+       return (
+         <header>
+           <div className="wrap header--flex">
+             <h1 className="header--logo">
+               <Link to="/">Courses</Link>
+             </h1>
+             <nav>
+               {authUser ? (
+                 <React.Fragment>
+                   <ul className="header--signedin">
+                     <span>Welcome, {authUser.firstName}!</span>
+                     <li>
+                       <Link to="/signout">Sign Out</Link>
+                     </li>
+                   </ul>
+                 </React.Fragment>
+               ) : (
+                 <React.Fragment>
+                   <ul className="header--signedout">
+                     <li>
+                       <Link to="/signup">Sign Up</Link>
+                     </li>
+                     <li>
+                       <Link to="/signin">Sign In</Link>
+                     </li>
+                   </ul>
+                 </React.Fragment>
+               )}
+             </nav>
+           </div>
+         </header>
+       );
+     }
+   }

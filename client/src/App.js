@@ -1,69 +1,61 @@
-
 // main container components 
 
-import React from 'react';
-//import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+import Header from './Components/Header';
+import UserSignUp from './Components/UserSignUp';
+import UserSignIn from './Components/UserSignIn';
+import UserSignOut from './Components/UserSignOut';
+import Courses from './Components/Courses'
+//import CourseDetail from './Components/CourseDetail'
+
+import withContext from './Context';
+
+const HeaderWithContext = withContext(Header);
+const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
+const CoursesWithContext = withContext(Courses)
+//const CourseDetailWithContext = withContext(CourseDetail);
 
 function App() {
 
-//The effect happens after render
- //useEffect(() => {   });
 
-fetch('http://localhost:5000/api/courses')
+
+
+ //The effect happens after render
+ useEffect(() => {   
+ fetch('http://localhost:5000/api/courses')
  .then((res) => res.json())
  .then((data) => console.log(data));
-
-
-var NewComponent = React.createClass({
-  render: function() {
-    return (
-
-      <div id="root">
-        <header>
-          <div className="wrap header--flex">
-            <h1 className="header--logo"><a href="index.html">Courses</a></h1>
-            <nav>
-              <ul className="header--signedout">
-                <li><a href="sign-up.html">Sign Up</a></li>
-                <li><a href="sign-in.html">Sign In</a></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-        <main>
-          <div className="wrap main--grid">
-            <a className="course--module course--link" href="course-detail.html">
-              <h2 className="course--label">Course</h2>
-              <h3 className="course--title">Build a Basic Bookcase</h3>
-            </a>
-            <a className="course--module course--link" href="course-detail.html">
-              <h2 className="course--label">Course</h2>
-              <h3 className="course--title">Learn How to Program</h3>
-            </a>
-            <a className="course--module course--link" href="course-detail.html">
-              <h2 className="course--label">Course</h2>
-              <h3 className="course--title">Learn How to Test Programs</h3>
-            </a>
-            <a className="course--module course--add--module" href="create-course.html">
-              <span className="course--add--title">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 13 13" className="add"><polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 " /></svg>
-                New Course
-              </span>
-            </a>
-          </div>
-        </main>
-      </div>
-    );
-  }
 });
 
+
+
+ 
+  return (
+    <Router>
+      <div>
+        <HeaderWithContext/> 
+        <Switch>
+          <Route path='/signup' component={UserSignUpWithContext}/>
+          <Route path='/signin' component={UserSignInWithContext}/>
+          <Route path='/signout' component={UserSignOutWithContext}/>
+          <Route path='/courses'component={CoursesWithContext}/>
+         
+        </Switch>
+      </div>
+    </Router>
+
+  );
 }
-    
 
 export default App;
-
-
 
 
 

@@ -1,60 +1,74 @@
-//Stateful Component 
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from 'react-router-dom';
-import Form from './Form';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Form from "./Form";
 
-export default function UserSignUp(){
-  
-  const[name, username, password, errors];
-  
-  
+export default class UserSignUp extends Component {
+  state = {
+    firstName: "",
+    lastName: "",
+    emailAddress: "",
+    password: "",
+    errors: [],
+  };
 
   render() {
-    const {
-      name,
-      username,
-      password,
-      errors,
+    const { 
+      firstName, 
+      lastName, 
+      emailAddress, 
+      password, 
+      errors 
     } = this.state;
 
     return (
-      <div className="bounds">
-        <div className="grid-33 centered signin">
-          <h1>Sign Up</h1>
-          <Form 
-            cancel={this.cancel}
-            errors={errors}
-            submit={this.submit}
-            submitButtonText="Sign Up"
-            elements={() => (
-              <React.Fragment>
-                <input 
-                  id="name" 
-                  name="name" 
-                  type="text"
-                  value={name} 
-                  onChange={this.change} 
-                  placeholder="Name" />
-                <input 
-                  id="username" 
-                  name="username" 
-                  type="text"
-                  value={username} 
-                  onChange={this.change} 
-                  placeholder="User Name" />
-                <input 
-                  id="password" 
-                  name="password"
-                  type="password"
-                  value={password} 
-                  onChange={this.change} 
-                  placeholder="Password" />
-              </React.Fragment>
-            )} />
-          <p>
-            Already have a user account? <Link to="/signin">Click here</Link> to sign in!
-          </p>
-        </div>
+      <div className="form--centered">
+        <h2>Sign Up</h2>
+
+        <Form
+          cancel={this.cancel}
+          errors={errors}
+          submit={this.submit}
+          submitButtonText="Sign Up"
+          elements={() => (
+            <React.Fragment>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                value={firstName}
+                onChange={this.change}
+                placeholder="First Name"
+              />
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                value={lastName}
+                onChange={this.change}
+                placeholder="Last Name"
+              />
+              <input
+                id="emailAddress"
+                name="emailAddress"
+                type="text"
+                value={emailAddress}
+                onChange={this.change}
+                placeholder="Email Address"
+              />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={this.change}
+                placeholder="Password"
+              />
+            </React.Fragment>
+          )}
+        />
+        <p>
+          Already have a user account? Click here to <Link to="/signin">sign in</Link>!
+        </p>
       </div>
     );
   }
@@ -65,45 +79,45 @@ export default function UserSignUp(){
 
     this.setState(() => {
       return {
-        [name]: value
+        [name]: value,
       };
     });
-  }
+  };
 
   submit = () => {
     const { context } = this.props;
-    const {
-      name,
-      username,
-      password,
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { 
+      firstName, 
+      lastName, 
+      emailAddress, 
+      password 
     } = this.state;
 
-    // Create user
     const user = {
-      name,
-      username,
+      firstName,
+      lastName,
+      emailAddress,
       password,
     };
-
-    context.data.createUser(user)
-      .then( errors => {
+    context.data
+      .createUser(user)
+      .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
         } else {
-          context.actions.signIn(username, password)
-            .then(() => {
-              this.props.history.push('/authenticated');    
-            });
+          context.actions.signIn(emailAddress, password).then(() => {
+            this.props.history.push(from);
+            console.log("User successfully signed up!");
+          });
         }
       })
       .catch((err) => {
         console.log(err);
-        this.props.history.push('/error');
+        this.props.history.push("/error");
       });
-  
-  }
-
+  };
   cancel = () => {
-   this.props.history.push('/');
-  }
+    this.props.history.push("/");
+  };
 }
