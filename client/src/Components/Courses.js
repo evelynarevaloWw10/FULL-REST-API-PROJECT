@@ -7,32 +7,16 @@ import React, { Component } from "react";
 export default class Courses extends Component {
 
      
-  //   https://www.pluralsight.com/guides/fetching-data-updating-state-react-class
+ 
+  
+  
+  //https://www.pluralsight.com/guides/fetching-data-updating-state-react-class
 
-    componentDidMount(){
-      fetch('http://localhost:5000/api/courses')
-      .then((res) => res.json())
-      .then(courses => {
-        this.setState({course: courses});
-      })
-
-    }
-    
+  
    
    render(){
    return (
             <div id="root">
-              <header>
-                <div className="wrap header--flex">
-                  <h1 className="header--logo"><a href="index.html">Courses</a></h1>
-                  <nav>
-                    <ul className="header--signedout">
-                      <li><a href="sign-up.html">Sign Up</a></li>
-                      <li><a href="sign-in.html">Sign In</a></li>
-                    </ul>
-                  </nav>
-                </div>
-              </header>
               <main>
                 <div className="wrap main--grid">
                   <a className="course--module course--link" href="course-detail.html">

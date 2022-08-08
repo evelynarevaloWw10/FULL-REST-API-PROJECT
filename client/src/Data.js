@@ -52,4 +52,68 @@ export default class Data {
       throw new Error();
     }
   }
+
+
+
+//https://teamtreehouse.com/library/react-authentication/implementing-basic-authentication/set-up-user-registration 
+
+ async getCourse() {
+  const response = await this.api('/courses', 'GET', null, true);
+  if (response.status === 200) {
+    return response.json().then(data => data);
+  }
+  else if (response.status === 401) {
+    return null;
+  }
+  else {
+    throw new Error();
+  }
 }
+
+
+async createCourse(course) {
+  const response = await this.api('/courses', 'POST', course);
+  if (response.status === 201) {
+    return [];
+  }
+  else if (response.status === 400) {
+    return response.json().then(data => {
+      return data.errors;
+    });
+  }
+  else {
+    throw new Error();
+  }
+}
+
+async getCourseDetail() {
+  const response = await this.api('courses/:id', 'GET', null, true);
+  if (response.status === 200) {
+    return response.json().then(data => data);
+  }
+  else if (response.status === 401) {
+    return null;
+  }
+  else {
+    throw new Error();
+  }
+}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
