@@ -58,7 +58,7 @@ export default class Data {
 //https://teamtreehouse.com/library/react-authentication/implementing-basic-authentication/set-up-user-registration 
 
  async getCourse() {
-  const response = await this.api('/courses', 'GET', null, true);
+  const response = await this.api('/courses', 'GET', null, false, false);
   if (response.status === 200) {
     return response.json().then(data => data);
   }

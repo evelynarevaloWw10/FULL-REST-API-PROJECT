@@ -3,20 +3,27 @@
 
 import React from 'react';
 
+
+
 import { 
-   // Routes, 
-   // Route,
-   //  useParams 
+    useParams 
 } from 'react-router-dom';
 
 
 
 export default function CourseDetail(props){
-    //let {id} = useParams();
-// const findCourse = id => CourseDetail.find(course => course.id == id);
 
 
 
+    let {id} = useParams();
+
+
+
+    const findCourse = id => CourseDetail.find(course => course.id === id);
+
+
+
+ 
  
 // //https://stackoverflow.com/questions/71025652/get-id-using-useparams-hook-in-functional-component-react-router-dom-v6
 // //https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
@@ -39,7 +46,7 @@ export default function CourseDetail(props){
                 <div className="main--flex">
                   <div>
                     <h3 className="course--detail--title">Course</h3>
-                    <h4 className="course--name">Build a Basic Bookcase</h4>
+                    <h4 className="course--name">{id}</h4>
                     <p>By Joe Smith</p>
                     <p>High-end furniture projects are great to dream about. But unless you have a well-equipped shop and some serious woodworking experience to draw on, it can be difficult to turn the dream into a reality.</p>
                     <p>Not every piece of furniture needs to be a museum showpiece, though. Often a simple design does the job just as well and the experience gained in completing it goes a long way toward making the next project even better.</p>
@@ -72,5 +79,6 @@ export default function CourseDetail(props){
         
 
        );
+       
       }
     
