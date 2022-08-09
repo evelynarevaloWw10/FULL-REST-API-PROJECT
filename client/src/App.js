@@ -46,12 +46,11 @@ function App() {
         <HeaderWithContext/> 
         <Switch>
           
-          //<Route path='/' component={CoursesWithContext}/>
+          <Route exact path='/' component={CoursesWithContext}/>
           <Route path='/signup' component={UserSignUpWithContext}/>
           <Route path='/signin' component={UserSignInWithContext}/>
           <Route path='/signout' component={UserSignOutWithContext}/>
           <Route path='/courses/:id' component={CourseDetail}/>
-     
          
         </Switch>
       </div>

@@ -25,7 +25,7 @@ export default class Courses extends Component {
   
 
     
-  // courses = courses.course;
+  //courses = courses.course;
   return (
     <div className="wrap main--grid">
 
@@ -40,7 +40,7 @@ export default class Courses extends Component {
           <h3 className="course--title">{course.title}</h3>
         </Link>
       ))}
-      <Link to={`courses/create`} className="course--add--module course--module">
+      <Link to={`/courses/create`} className="course--add--module course--module">
         <span className="course--add--title">
           <svg
             version="1.1"

@@ -6,14 +6,14 @@ import React from 'react';
 import { 
    // Routes, 
    // Route,
-     useParams 
+   //  useParams 
 } from 'react-router-dom';
 
 
 
 export default function CourseDetail(props){
-    let {id} = useParams();
- const findCourse = id => CourseDetail.find(course => course.id == id);
+    //let {id} = useParams();
+// const findCourse = id => CourseDetail.find(course => course.id == id);
 
 
 
