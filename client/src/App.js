@@ -12,7 +12,7 @@ import UserSignUp from './Components/UserSignUp';
 import UserSignIn from './Components/UserSignIn';
 import UserSignOut from './Components/UserSignOut';
 import Courses from './Components/Courses';
-//import CourseDetail from './Components/CourseDetail';
+import CourseDetail from './Components/CourseDetail';
 
 
 import withContext from './Context';
@@ -38,7 +38,7 @@ function App() {
 });
 
 //Rohald helped with CourseDetail Route
-//<Route path='/courses/:id' component={CourseDetail}/>
+//
 
   return (
     <Router>
@@ -50,7 +50,7 @@ function App() {
           <Route path='/signup' component={UserSignUpWithContext}/>
           <Route path='/signin' component={UserSignInWithContext}/>
           <Route path='/signout' component={UserSignOutWithContext}/>
-          
+          <Route path='/courses/:id' component={CourseDetail}/>
      
          
         </Switch>

@@ -18,10 +18,10 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-    if (requiresAuth) {    
-      const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
-      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-    }
+    // if (requiresAuth) {    
+    //   const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
+    //   options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+    // }
     return fetch(url, options);
   }
 
