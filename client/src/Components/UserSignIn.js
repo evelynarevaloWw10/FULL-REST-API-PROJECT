@@ -14,9 +14,10 @@ export default class UserSignIn extends Component {
     const { username, password, errors } = this.state;
 
     return (
+      <div className="form--centered">
       <div className="bounds">
         <div className="grid-33 centered signin">
-          <h1>Sign In</h1>
+          <h2>Sign In</h2>
           <Form
             cancel={this.cancel}
             errors={errors}
@@ -48,6 +49,7 @@ export default class UserSignIn extends Component {
             sign up!
           </p>
         </div>
+      </div>
       </div>
     );
   }
