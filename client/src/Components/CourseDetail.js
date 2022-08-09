@@ -21,7 +21,7 @@ export default function CourseDetail(props){
 
     const findCourse = id => CourseDetail.find(course => course.id === id);
 
-
+   
 
  
  
