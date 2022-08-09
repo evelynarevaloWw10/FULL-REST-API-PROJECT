@@ -22,7 +22,7 @@ export default class Data {
     //   const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
     //   options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     // }
-    return fetch(url, options);
+    // return fetch(url, options);
   }
 
   async getUser(username, password) {
