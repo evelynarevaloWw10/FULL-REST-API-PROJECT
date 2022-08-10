@@ -126,7 +126,6 @@ async createCourse(course) {
 }
 
 
-//'GET', null, true
 
 
 
