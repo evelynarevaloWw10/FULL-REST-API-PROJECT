@@ -25,6 +25,8 @@ export default class Data {
     return fetch(url, options);
   }
 
+
+
   async getUser(username, password) {
     const response = await this.api(`/users`, 'GET', null, true, { username, password });
     if (response.status === 200) {
@@ -70,9 +72,37 @@ export default class Data {
   }
 }
 
+async getCourseDetail(id) {
+  const response = await this.api(`/courses/${id}`);
+  if (response.status === 200) {
+    return response.json().then(data => data);
+  }
+  else if (response.status === 401) {
+    return null;
+  }
+  else {
+    throw new Error();
+  }
+}
+
+async updateCourse(id) {
+  const response = await this.api(`/courses/${id}`, 'PUT');
+  if (response.status === 201) {
+    response.json().then(data => data);
+  }
+  else if (response.status === 400) {
+    return response.json().then(data => {
+      return data.errors;
+    });
+  }
+  else {
+    throw new Error();
+  }
+}
+
 
 async createCourse(course) {
-  const response = await this.api('/courses', 'POST', course);
+  const response = await this.api('/courses', 'POST');
   if (response.status === 201) {
     return [];
   }
@@ -86,18 +116,11 @@ async createCourse(course) {
   }
 }
 
-async getCourseDetail(id) {
-  const response = await this.api(`/courses/${id}`, );
-  if (response.status === 200) {
-    return response.json().then(data => data);
-  }
-  else if (response.status === 401) {
-    return null;
-  }
-  else {
-    throw new Error();
-  }
-}
+
+
+
+
+
 
 
 }

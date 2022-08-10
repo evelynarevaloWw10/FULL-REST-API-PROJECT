@@ -13,6 +13,7 @@ import UserSignIn from './Components/UserSignIn';
 import UserSignOut from './Components/UserSignOut';
 import Courses from './Components/Courses';
 import CourseDetail from './Components/CourseDetail';
+import UpdateCourse from './Components/UpdateCourse';
 
 
 import withContext from './Context';
@@ -51,6 +52,7 @@ function App() {
           <Route path='/signin' component={UserSignInWithContext}/>
           <Route path='/signout' component={UserSignOutWithContext}/>
           <Route path='/courses/:id' component={CourseDetailWithContext}/>
+          <Route path= '/courses/:id/update' component={UpdateCourse}/>
          
         </Switch>
       </div>
