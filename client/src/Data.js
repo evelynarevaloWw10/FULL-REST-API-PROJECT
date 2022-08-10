@@ -87,7 +87,7 @@ async createCourse(course) {
 }
 
 async getCourseDetail(id) {
-  const response = await this.api(`courses/${id}`, 'GET', null, true);
+  const response = await this.api(`/courses/${id}`, );
   if (response.status === 200) {
     return response.json().then(data => data);
   }
@@ -103,7 +103,7 @@ async getCourseDetail(id) {
 }
 
 
-
+//'GET', null, true
 
 
 

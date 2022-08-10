@@ -1,37 +1,35 @@
 // // //Stateful Component 
 
 
-import React from 'react';
-
-
-
-import { 
-    useParams 
-} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {  useParams } from 'react-router-dom';
 
 
 
 export default function CourseDetail(props){
 
+  const{data} = props.context;
+  const [course, setCourse] = useState({});
+  let {id} = useParams();
 
 
-    let {id} = useParams();
+      useEffect(() => {
+      data.getCourseDetail(id)
+      .then(res => setCourse.log(res))
+      .catch(err => console.log(err));
+      },[])
 
 
+      
+console.log(course)
+console.log(props)
 
-    const findCourse = id => CourseDetail.find(course => course.id === id);
-
-   
-
- 
- 
+// const findCourse = id => CourseDetail.find(course => course.id === id);
 // //https://stackoverflow.com/questions/71025652/get-id-using-useparams-hook-in-functional-component-react-router-dom-v6
 // //https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
 
       return (
-    
-    
-        
+  
           <main>
             <div className="actions--bar">
               <div className="wrap">
@@ -46,7 +44,8 @@ export default function CourseDetail(props){
                 <div className="main--flex">
                   <div>
                     <h3 className="course--detail--title">Course</h3>
-                    <h4 className="course--name">{id}</h4>
+                    <h4 className="course--name">{course.title}</h4>
+                 
                     <p>By Joe Smith</p>
                     <p>High-end furniture projects are great to dream about. But unless you have a well-equipped shop and some serious woodworking experience to draw on, it can be difficult to turn the dream into a reality.</p>
                     <p>Not every piece of furniture needs to be a museum showpiece, though. Often a simple design does the job just as well and the experience gained in completing it goes a long way toward making the next project even better.</p>
@@ -79,6 +78,6 @@ export default function CourseDetail(props){
         
 
        );
-       
+            
       }
-    
+
