@@ -31,7 +31,7 @@ export default (props) => {
       </form>
     </div>
   );
-}
+} 
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
 
@@ -47,4 +47,5 @@ function ErrorsDisplay({ errors }) {
   }
 
   return errorsDisplay;
+  console.log(this.params)
 }

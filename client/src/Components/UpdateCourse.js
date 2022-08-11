@@ -93,8 +93,7 @@ export default class UpdateCourse extends Component {
   // componentDidMount() {
   //   const { authenticatedUser, data, course, id } = this.state;
 
-  //   data
-  //     .getCourseDetail(id)
+  //   data.getCourseDetail(id)
   //     .then((course) => {
   //       if (course) {
   //         this.setState(course);
@@ -115,8 +114,8 @@ export default class UpdateCourse extends Component {
   //   });
   // };
 
-  // cancel = () => {
-  //   const { id } = this.state;
-  //   this.props.history.push(`/courses/${id}`);
-  // };
-}
+  //  cancel = () => {
+  //    const { id } = this.state;
+  //    this.props.history.push(`/courses/${id}`);
+  //  };
+  }

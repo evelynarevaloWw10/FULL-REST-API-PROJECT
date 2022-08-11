@@ -52,7 +52,7 @@ return (
                         
                         <div>
                            <ReactMarkdown className="course--detail--list" children={course.course.estimatedTime} />
-                            <p>14 hours</p>
+                       
 
                             <h3 className="course--detail--title">Materials Needed</h3>
                             <ReactMarkdown className="course--detail--list" children={course.course.materialsNeeded} />

@@ -12,7 +12,8 @@ import Form from "./Form";
             CourseDescription: "",
             EstimatedTime: "",
             MaterialsNeeded: "",
-            Errors: [],
+            errors: [],
+            //userId: this.props.context.authenticatedUser.id
        
         }
 
@@ -23,6 +24,7 @@ import Form from "./Form";
               EstimatedTime, 
               MaterialsNeeded, 
               errors,
+             // userId 
             
             } = this.state;
 
@@ -32,67 +34,114 @@ import Form from "./Form";
 
           return (
       
-    
-
-
-      
            <div className="wrap">
                   <h2>Create Course </h2>
-                  
-            
              <Form
               cancel={this.cancel}
               errors={errors}
               submit={this.submit}
-              submitButtonText="Sign Up"
+              submitButtonText="Create Course"
               elements={() => (
+
                 <React.Fragment>
-                  <input
-                    id="CourseTitle"
-                    name="CourseTitle"
-                    type="text"
-                    value={CourseTitle}
-                    onChange={this.change}
-                    placeholder="Course Title"
-                  />
-                  <input
-                    id="CourseDescription"
-                    name="CourseDescription"
-                    type="text"
-                    value={CourseDescription}
-                    onChange={this.change}
-                    placeholder="Course Description"
-                  />
-                  <input
-                    id="EstimatedTime"
-                    name="EstimatedTime"
-                    type="text"
-                    value={EstimatedTime}
-                    onChange={this.change}
-                    placeholder="Estimated Time"
-                  />
-                  <input
-                    id="MaterialsNeeded"
-                    name="MaterialsNeeded"
-                    type="text"
-                    value={MaterialsNeeded}
-                    onChange={this.change}
-                    placeholder="Materials Needed"
-                  />
+                  <div className="main--flex">
+                    <div>
+                      <label htmlFor="title">Course Title</label>
+                      <input
+                        id="CourseTitle"
+                        name="CourseTitle"
+                        type="text"
+                        value={CourseTitle}
+                        onChange={this.change}
+                      
+                      />
+                     
+                      <label htmlFor="CourseDescription">Course Description</label>
+                      <textarea
+                        id="CourseDescription"
+                        name="CourseDescription"
+                        type="text"
+                        value={CourseDescription}
+                        onChange={this.change}
+                    
+                      />
+                    </div>
+                    <div>  
+                      <label htmlFor="EstimatedTime">Estimated Time</label>
+                      <input
+                        id="EstimatedTime"
+                        name="EstimatedTime"
+                        type="text"
+                        value={EstimatedTime}
+                        onChange={this.change}
+                      
+                      />
+                      <label htmlFor="MaterialsNeeded">Materials Needed</label>
+                      <textarea
+                        id="MaterialsNeeded"
+                        name="MaterialsNeeded"
+                        type="text"
+                        value={MaterialsNeeded}
+                        onChange={this.change}
+                      
+                      />
+                    </div>
+                  </div>    
                 </React.Fragment>
               )}
             />
-            <p>
-              Already have a user account? Click here to <Link to="/signin">sign in</Link>!
-            </p>
-          </div> 
-
+          </div>
         );
       }
+      change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+    
+        this.setState(() => {
+          return {
+            [name]: value,
+          };
+        });
+      };
+
+      submit = () => {
+        const {context} = this.props;
+        const {data, authenticatedUser} = context;
+        const {title, description, estimatedTime, materialsNeeded} = this.state;
+
+        const course = {
+          title,
+          description,
+          estimatedTime,
+          materialsNeeded,
+          //userId: authenticatedUser.id,
+          emailAddress: authenticatedUser.emailAddress,
+          password: authenticatedUser.password
+        }
+
+
+        data.createCourse(course, authenticatedUser)
+        .then((errors) => {
+          if (errors.length) {
+            this.setState({errors});
+          } else {
+            console.log(`${title} successfully created`);
+            this.props.history.push('/');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        }
+
+        cancel = () => {
+        this.props.history.push('/');
+        }
+
 
     }
 
 
-        
+       // <p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
         
     
