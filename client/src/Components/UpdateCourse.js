@@ -20,10 +20,13 @@ export default class UpdateCourse extends Component {
     errors: [],
   };
 
+
   render() {
     const { authenticatedUser, data, course, id, errors } = this.state;
-    console.log(this.props)
-    console.log(course);
+  console.log(course)
+  
+ 
+  
 
     //https://magic.reactjs.net/htmltojsx.htm
 
@@ -90,6 +93,7 @@ export default class UpdateCourse extends Component {
     );
   }
 
+
   // componentDidMount() {
   //   const { authenticatedUser, data, course, id } = this.state;
 
@@ -118,4 +122,6 @@ export default class UpdateCourse extends Component {
   //    const { id } = this.state;
   //    this.props.history.push(`/courses/${id}`);
   //  };
+
   }
+

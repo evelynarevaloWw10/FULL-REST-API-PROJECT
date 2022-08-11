@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import {  useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
+//functional component data will be assigned props.context
+//using param hook to be able to access the key value pair of each course
 
 export default function CourseDetail(props){
 
@@ -12,9 +14,10 @@ export default function CourseDetail(props){
   let {id} = useParams();
   const [isLoading, setIsLoading] = useState(true);
 
+
+  //use effect hook calling getCourse() GET request from data.js then setting response to equal setCourse function. Had issues fetching data//not fast enough so added finally to make sure that it would not continue running program until loading was false
   useEffect(() => {
-    data
-      .getCourseDetail(id)
+    data.getCourseDetail(id)
       .then((res) => setCourse(res))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -25,6 +28,8 @@ export default function CourseDetail(props){
 ////https://blog.logrocket.com/how-to-safely-render-markdown-using-react-markdown/
 // //https://stackoverflow.com/questions/71025652/get-id-using-useparams-hook-in-functional-component-react-router-dom-v6
 // //https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
+
+//used link and reactMarkdown to be able to make information dynamic also to be able to link up my link buttons to correct routes
 
 return (
   

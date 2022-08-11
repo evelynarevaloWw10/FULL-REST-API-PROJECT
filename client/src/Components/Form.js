@@ -47,5 +47,5 @@ function ErrorsDisplay({ errors }) {
   }
 
   return errorsDisplay;
-  console.log(this.params)
-}
+
+}  

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Form from "./Form";
 
 
+//class component 
+//setting state to empty strings and arrays as that will later be rendered with dynamic data
  export default class CreateCourse extends Component {
 
         state = {
@@ -31,7 +33,7 @@ import Form from "./Form";
    const {context} = this.props;
    console.log(context)
 
-
+//form is imported to use to have for styling and placement of inputs 
           return (
       
            <div className="wrap">
@@ -93,6 +95,8 @@ import Form from "./Form";
           </div>
         );
       }
+
+      //method that triggers change event to run when change event occurs
       change = (event) => {
         const name = event.target.name;
         const value = event.target.value;

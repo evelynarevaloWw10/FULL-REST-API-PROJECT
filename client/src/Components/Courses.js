@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { default as Data } from '../Data.js';
 
-
+//class component using constructor to set state.
 
 export default class Courses extends Component {
   constructor() {
@@ -13,12 +13,15 @@ export default class Courses extends Component {
     }
   }
 
+//calling the GetCourse () from data.js to set state in response and check/catch any errors
+
   componentDidMount() {
     this.state.data.getCourse()
     .then(res => this.setState({courses: res.course}))
     .catch(err => console.log(err));
   }
 
+  
   render() {
 
     let {courses} = this.state; 
