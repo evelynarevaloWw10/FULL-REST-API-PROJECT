@@ -31,20 +31,16 @@ import Form from "./Form";
 
 
           return (
-      <h1>hi</h1>
+      
     
 
 
       
-          //   // <div className="wrap">
-          //   //         <h2>Create Course </h2>
-          //   //           
-
-
-
-
+           <div className="wrap">
+                  <h2>Create Course </h2>
+                  
             
-            /* <Form
+             <Form
               cancel={this.cancel}
               errors={errors}
               submit={this.submit}
@@ -89,7 +85,8 @@ import Form from "./Form";
             <p>
               Already have a user account? Click here to <Link to="/signin">sign in</Link>!
             </p>
-          </div> */
+          </div> 
+
         );
       }
 
