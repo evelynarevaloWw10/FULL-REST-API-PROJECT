@@ -12,8 +12,8 @@ import Form from "./Form";
             CourseDescription: "",
             EstimatedTime: "",
             MaterialsNeeded: "",
-            Errors: []
-
+            Errors: [],
+       
         }
 
         render() {
@@ -22,22 +22,29 @@ import Form from "./Form";
               CourseDescription, 
               EstimatedTime, 
               MaterialsNeeded, 
-              errors 
+              errors,
+            
             } = this.state;
 
-   
+   const {context} = this.props;
+   console.log(context)
+
+
           return (
-      
-            <div className="main--flex">
-                    <div>
-                       <label htmlFor="courseTitle">Course Title</label>
-                      <input id="courseTitle" name="courseTitle" type="text" defaultValue />
-                      <p>By Joe Smith</p>
-                      <label htmlFor="courseDescription">Course Description</label>
-                      <textarea id="courseDescription" name="courseDescription" defaultValue={""} />
-                    </div>
+      <h1>hi</h1>
     
-            <Form
+
+
+      
+          //   // <div className="wrap">
+          //   //         <h2>Create Course </h2>
+          //   //           
+
+
+
+
+            
+            /* <Form
               cancel={this.cancel}
               errors={errors}
               submit={this.submit}
@@ -82,60 +89,13 @@ import Form from "./Form";
             <p>
               Already have a user account? Click here to <Link to="/signin">sign in</Link>!
             </p>
-          </div>
+          </div> */
         );
       }
-
-      change = (event) => {
-        const submit = event.target.submit;
-        const value = event.target.value;
-    
-        this.setState(() => {
-          return {
-            [submit]: value,
-          };
-        });
-      };
 
     }
 
 
-            // <main>
-            //   <div className="wrap">
-            //     <h2>Create Course</h2>
-            //     <div className="validation--errors">
-            //       <h3>Validation Errors</h3>
-            //       <ul>
-            //         <li>Please provide a value for "Title"</li>
-            //         <li>Please provide a value for "Description"</li>
-            //       </ul>
-            //     </div>
-            //     <form>
-            //       <div className="main--flex">
-            //         <div>
-            //           <label htmlFor="courseTitle">Course Title</label>
-            //           <input id="courseTitle" name="courseTitle" type="text" defaultValue />
-            //           <p>By Joe Smith</p>
-            //           <label htmlFor="courseDescription">Course Description</label>
-            //           <textarea id="courseDescription" name="courseDescription" defaultValue={""} />
-            //         </div>
-            //         <div>
-            //           <label htmlFor="estimatedTime">Estimated Time</label>
-            //           <input id="estimatedTime" name="estimatedTime" type="text" defaultValue />
-            //           <label htmlFor="materialsNeeded">Materials Needed</label>
-            //           <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={""} />
-            //         </div>
-            //       </div>
-            //       <button className="button" type="submit">Create Course</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='/courses';">Cancel</button>
-            //     </form>
-            //   </div>
-            // </main>
-         // );
-      
-          
         
-        
-        
-           // }
         
     
