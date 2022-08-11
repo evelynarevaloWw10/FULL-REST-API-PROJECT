@@ -19,7 +19,7 @@ export default class Data {
     }
 
     if (requiresAuth) {    
-      const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+      const encodedCredentials = btoa(`${credentials.EmailAddress}:${credentials.password}`);
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
     return fetch(url, options);
@@ -103,6 +103,21 @@ async updateCourse(course, user) {
 async createCourse(course) {
   const {emailAddress, password} = course;
   const response = await this.api('/courses', 'POST', course, true, {emailAddress, password});
+  if (response.status === 201) {
+    return [];
+  }
+  else if (response.status === 400) {
+    return response.json().then(data => {
+      return data.errors;
+    });
+  }
+  else {
+    throw new Error();
+  }
+}
+
+async deleteCourse(course) {
+  const response = await this.api('/courses', 'Delete', course, true );
   if (response.status === 201) {
     return [];
   }

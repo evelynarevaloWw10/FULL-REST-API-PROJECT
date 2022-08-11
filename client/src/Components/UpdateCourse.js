@@ -1,6 +1,5 @@
 // // // //Stateful Component 
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
 import Form from "./Form";
 
 
@@ -15,19 +14,19 @@ export default class UpdateCourse extends Component {
       description: "",
       materialsNeeded: "",
       estimatedTime: "",
+      //userId
     },
+
     id: this.props.match.params.id,
     errors: [],
   };
 
 
   render() {
-    const { authenticatedUser, data, course, id, errors } = this.state;
+    const { course, errors, isLoading } = this.state;
   console.log(course)
   
- 
   
-
     //https://magic.reactjs.net/htmltojsx.htm
 
     return (
@@ -121,7 +120,7 @@ export default class UpdateCourse extends Component {
   //  cancel = () => {
   //    const { id } = this.state;
   //    this.props.history.push(`/courses/${id}`);
-  //  };
+  //   };
 
-  }
+   }
 

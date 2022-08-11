@@ -1,7 +1,7 @@
 // // //Stateful Component 
 
 import React, { useEffect, useState } from 'react';
-import {  useParams, Link } from 'react-router-dom';
+import {  useParams, Link, useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
 //functional component data will be assigned props.context
@@ -9,19 +9,35 @@ import ReactMarkdown from 'react-markdown';
 
 export default function CourseDetail(props){
 
-  const{data} = props.context;
+  const{ authenticatedUser, data} = props.context  
   const [course, setCourse] = useState({});
+  const history = useHistory();
   let {id} = useParams();
   const [isLoading, setIsLoading] = useState(true);
 
 
   //use effect hook calling getCourse() GET request from data.js then setting response to equal setCourse function. Had issues fetching data//not fast enough so added finally to make sure that it would not continue running program until loading was false
-  useEffect(() => {
-    data.getCourseDetail(id)
+  useEffect(() => { data.getCourseDetail(id)
       .then((res) => setCourse(res))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);
+
+
+const deleteButton = () => {
+    data.deleteCourse(course.course.id, authenticatedUser)
+    .then(errors => {
+      if (errors) {
+        console.log(errors);
+      } else {
+        console.log('Course deleted')
+      }
+    })
+    .then(() => history.push('/'))
+    .catch(err => console.log(err));
+
+}
+
 
 
 //https://www.youtube.com/watch?v=OrDzmC-IkR0
@@ -37,7 +53,7 @@ return (
             <div className="actions--bar">
                 <div className="wrap">
                     <Link className="button" to="/courses/${id}/update">Update Course</Link>
-                    <Link className="button" to="/delete">Delete Course</Link>
+                    <Link className="button" onClick={deleteButton}>Delete Course</Link>
                     <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>
             </div>
@@ -71,4 +87,9 @@ return (
 
  );
     
+
+
+
+
+
  }
