@@ -11,7 +11,7 @@ export default class UserSignIn extends Component {
   };
 
   render() {
-    const { username, password, errors } = this.state;
+    const { emailAddress, password, errors } = this.state;
 
     return (
       <div className="form--centered">
@@ -26,12 +26,12 @@ export default class UserSignIn extends Component {
             elements={() => (
               <React.Fragment>
                 <input
-                  id="username"
-                  name="username"
+                  id="emailAddress"
+                  name="emailAddress"
                   type="text"
-                  value={username}
+                  value={emailAddress}
                   onChange={this.change}
-                  placeholder="User Name"
+                  placeholder="Email Address"
                 />
                 <input
                   id="password"
@@ -70,17 +70,18 @@ export default class UserSignIn extends Component {
     const { from } = this.props.location.state || {
       from: { pathname: "/authenticated" },
     };
-    const { email, password } = this.state;
+    const { emailAddress, password } = this.state;
 
-    context.actions
-      .signIn(email, password)
+    context.actions.signIn(emailAddress, password)
       .then((user) => {
+       
         if (user === null) {
           this.setState(() => {
             return { errors: ["Sign-in was unsuccessful"] };
           });
         } else {
           this.props.history.push(from);
+          console.log(`Nice! ${emailAddress} is now signed in!`)
         }
       })
       .catch((error) => {

@@ -24,7 +24,7 @@ export default (props) => {
       <ErrorsDisplay errors={errors} />
       <form onSubmit={handleSubmit}>
         {elements()}
-        <div className="pad-bottom">
+        <div>
           <button className="button" type="submit">{submitButtonText}</button>
           <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
         </div>
@@ -32,20 +32,17 @@ export default (props) => {
     </div>
   );
 }
-
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
 
   if (errors.length) {
     errorsDisplay = (
-      <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
+        <div className="validation--errors">
+          <h3>Validation Errors</h3>
           <ul>
             {errors.map((error, i) => <li key={i}>{error}</li>)}
           </ul>
         </div>
-      </div>
     );
   }
 
