@@ -1,91 +1,87 @@
 // // //Stateful Component 
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Form from "./Form";
 
 
-//class component 
-//setting state to empty strings and arrays as that will later be rendered with dynamic data
  export default class CreateCourse extends Component {
 
         state = {
-            CourseTitle: "",
-            CourseDescription: "",
-            EstimatedTime: "",
-            MaterialsNeeded: "",
+            title: "",
+            description: "",
+            estimatedTime: "",
+            materialsNeeded: "",
+            //userId: this.props.context.authenticatedUser.id,
             errors: [],
-            //userId: this.props.context.authenticatedUser.id
-       
+
         }
 
         render() {
             const { 
-              CourseTitle, 
-              CourseDescription, 
-              EstimatedTime, 
-              MaterialsNeeded, 
-              errors,
-             // userId 
-            
+              title, 
+              description, 
+              estimatedTime, 
+              materialsNeeded, 
+              errors, 
             } = this.state;
 
-   const {context} = this.props;
-   console.log(context)
+            const {context} = this.props;
+            //const {authenticatedUser} = context;
+     
 
-//form is imported to use to have for styling and placement of inputs 
+   
           return (
       
-           <div className="wrap">
-                  <h2>Create Course </h2>
-             <Form
+
+          <div className="wrap">
+            <h2>Create Course</h2>
+            <Form
               cancel={this.cancel}
               errors={errors}
               submit={this.submit}
               submitButtonText="Create Course"
               elements={() => (
-
                 <React.Fragment>
                   <div className="main--flex">
                     <div>
                       <label htmlFor="title">Course Title</label>
                       <input
-                        id="CourseTitle"
-                        name="CourseTitle"
+                        id="title"
+                        name="title"
                         type="text"
-                        value={CourseTitle}
+                        value={title}
                         onChange={this.change}
-                      
+                       
                       />
                      
-                      <label htmlFor="CourseDescription">Course Description</label>
+                      <label htmlFor="description">Course Description</label>
                       <textarea
-                        id="CourseDescription"
-                        name="CourseDescription"
+                        id="description"
+                        name="description"
                         type="text"
-                        value={CourseDescription}
+                        value={description}
                         onChange={this.change}
-                    
+                      
                       />
                     </div>
                     <div>  
-                      <label htmlFor="EstimatedTime">Estimated Time</label>
+                      <label htmlFor="estimatedTime">Estimated Time</label>
                       <input
-                        id="EstimatedTime"
-                        name="EstimatedTime"
+                        id="estimatedTime"
+                        name="estimatedTime"
                         type="text"
-                        value={EstimatedTime}
+                        value={estimatedTime}
                         onChange={this.change}
-                      
+                    
                       />
-                      <label htmlFor="MaterialsNeeded">Materials Needed</label>
+                      <label htmlFor="materialsNeeded">Materials Needed</label>
                       <textarea
-                        id="MaterialsNeeded"
-                        name="MaterialsNeeded"
+                        id="materialsNeeded"
+                        name="materialsNeeded"
                         type="text"
-                        value={MaterialsNeeded}
+                        value={materialsNeeded}
                         onChange={this.change}
-                      
+                        
                       />
                     </div>
                   </div>    
@@ -96,7 +92,7 @@ import Form from "./Form";
         );
       }
 
-      //method that triggers change event to run when change event occurs
+      //<p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
       change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -118,7 +114,7 @@ import Form from "./Form";
           description,
           estimatedTime,
           materialsNeeded,
-          //userId: authenticatedUser.id,
+          userId: authenticatedUser.id,
           emailAddress: authenticatedUser.emailAddress,
           password: authenticatedUser.password
         }
@@ -136,16 +132,10 @@ import Form from "./Form";
         .catch(err => {
           console.log(err);
         })
-        }
+      }
 
-        cancel = () => {
+      cancel = () => {
         this.props.history.push('/');
-        }
-
+      }
 
     }
-
-
-       // <p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
-        
-    
