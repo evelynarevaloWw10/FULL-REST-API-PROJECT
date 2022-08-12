@@ -48,9 +48,9 @@ export default class UpdateCourse extends Component {
                       id="title"
                       name="title"
                       type="text"
-                     // value={course.title}
+                      //value={course.title}
                       onChange={this.change}
-                      placeholder={course.title}
+                   
                     />
                     <p>{`By: ${course.User.firstName} ${course.User.lastName}`}</p>
                     <label htmlFor="description">Course Description</label>
@@ -58,9 +58,9 @@ export default class UpdateCourse extends Component {
                       id="description"
                       name="description"
                       type="text"
-                      value={course.description}
+                      //value={course.description}
                       onChange={this.change}
-                      placeholder={course.description}
+                  
                     />
                   </div>
                   <div>
@@ -71,16 +71,16 @@ export default class UpdateCourse extends Component {
                       type="text"
                       value={course.estimatedTime}
                       onChange={this.change}
-                      placeholder={course.estimatedTime}
+                    
                     />
                     <label htmlFor="materialsNeeded">Materials Needed</label>
                     <textarea
                       id="materialsNeeded"
                       name="materialsNeeded"
                       type="text"
-                      value={course.materialsNeeded}
+                      //value={course.materialsNeeded}
                       onChange={this.change}
-                      placeholder={course.materialsNeeded}
+                 
                     />
                   </div>
                 </div>
