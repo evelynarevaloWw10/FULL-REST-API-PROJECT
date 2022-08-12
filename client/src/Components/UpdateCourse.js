@@ -8,6 +8,7 @@ export default class UpdateCourse extends Component {
   state = {
     authenticatedUser: this.props.context.authenticatedUser,
     data: this.props.context.data,
+    isLoading: true,
     course: {
       User: {},
       title: "",
