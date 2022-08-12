@@ -133,8 +133,9 @@ async createCourse(course) {
   }
 }
 
-async deleteCourse(course) {
-  const response = await this.api('/courses', 'Delete', course, true );
+async deleteCourse(course, user) {
+  const {emailAddress, password} = user;
+  const response = await this.api(`/courses/${course.id}`, 'DELETE', course, true, {emailAddress, password} );
   if (response.status === 201) {
     return [];
   }
