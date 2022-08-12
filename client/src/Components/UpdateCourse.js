@@ -48,7 +48,7 @@ export default class UpdateCourse extends Component {
                       id="title"
                       name="title"
                       type="text"
-                      //value={course.title}
+                      value={course.title}
                       onChange={this.change}
                    
                     />
@@ -58,7 +58,7 @@ export default class UpdateCourse extends Component {
                       id="description"
                       name="description"
                       type="text"
-                      //value={course.description}
+                      value={course.description}
                       onChange={this.change}
                   
                     />
@@ -78,7 +78,7 @@ export default class UpdateCourse extends Component {
                       id="materialsNeeded"
                       name="materialsNeeded"
                       type="text"
-                      //value={course.materialsNeeded}
+                      value={course.materialsNeeded}
                       onChange={this.change}
                  
                     />
@@ -93,34 +93,34 @@ export default class UpdateCourse extends Component {
   }
 
 
-  // componentDidMount() {
-  //   const { authenticatedUser, data, course, id } = this.state;
+  componentDidMount() {
+    const { authenticatedUser, data, course, id } = this.state;
 
-  //   data.getCourseDetail(id)
-  //     .then((course) => {
-  //       if (course) {
-  //         this.setState(course);
-  //         console.log(course);
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+    data.getCourseDetail(id)
+      .then((course) => {
+        if (course) {
+          this.setState(course);
+          console.log(course);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
-  // change = (event) => {
-  //   const name = event.target.name;
-  //   const value = event.target.value;
+  change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
-  //   this.setState(() => {
-  //     return {
-  //       [name]: value,
-  //     };
-  //   });
-  // };
+    this.setState(() => {
+      return {
+        [name]: value,
+      };
+    });
+  };
 
-  //  cancel = () => {
-  //    const { id } = this.state;
-  //    this.props.history.push(`/courses/${id}`);
-  //   };
+   cancel = () => {
+     const { id } = this.state;
+     this.props.history.push(`/courses/${id}`);
+    };
 
    }
 

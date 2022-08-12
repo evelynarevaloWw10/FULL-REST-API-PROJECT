@@ -52,7 +52,7 @@ return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                    <Link className="button" to="/courses/${id}/update">Update Course</Link>
+                    <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <Link className="button" onClick={deleteButton}>Delete Course</Link>
                     <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>

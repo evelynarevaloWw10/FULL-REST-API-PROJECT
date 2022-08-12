@@ -11,7 +11,7 @@ import Form from "./Form";
             description: "",
             estimatedTime: "",
             materialsNeeded: "",
-            userId: this.props.context.authenticatedUser.id,
+          //  userId: this.props.context.authenticatedUser.id,
             errors: [],
 
         }
@@ -26,8 +26,8 @@ import Form from "./Form";
             } = this.state;
 
             const {context} = this.props;
-            const {authenticatedUser} = context;
-     
+           // const {authenticatedUser} = context;
+            //console.log(authenticatedUser);
 
    
           return (
@@ -40,6 +40,9 @@ import Form from "./Form";
               errors={errors}
               submit={this.submit}
               submitButtonText="Create Course"
+              submitTwo={this.submit}
+              submitButtonTwoText=""
+
               elements={() => (
                 <React.Fragment>
                   <div className="main--flex">
@@ -53,7 +56,7 @@ import Form from "./Form";
                         onChange={this.change}
                        
                       />
-                      <p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
+                      
                       <label htmlFor="description">Course Description</label>
                       <textarea
                         id="description"
@@ -91,51 +94,51 @@ import Form from "./Form";
           </div>
         );
       }
-
+     
+      //<p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
+      // change = (event) => {
+      //   const name = event.target.name;
+      //   const value = event.target.value;
     
-      change = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-    
-        this.setState(() => {
-          return {
-            [name]: value,
-          };
-        });
-      };
+      //   this.setState(() => {
+      //     return {
+      //       [name]: value,
+      //     };
+      //   });
+      // };
 
-      submit = () => {
-        const {context} = this.props;
-        const {data, authenticatedUser} = context;
-        const {title, description, estimatedTime, materialsNeeded} = this.state;
+      // submit = () => {
+      //   const {context} = this.props;
+      //   const {data, authenticatedUser} = context;
+      //   const {title, description, estimatedTime, materialsNeeded} = this.state;
 
-        const course = {
-          title,
-          description,
-          estimatedTime,
-          materialsNeeded,
-          userId: authenticatedUser.id,
-          emailAddress: authenticatedUser.emailAddress,
-          password: authenticatedUser.password
-        }
+        // const course = {
+        //   title,
+        //   description,
+        //   estimatedTime,
+        //   materialsNeeded,
+        //   userId: authenticatedUser.id,
+        //   emailAddress: authenticatedUser.emailAddress,
+        //   password: authenticatedUser.password
+        // }
 
 
-        data.createCourse(course, authenticatedUser)
-        .then((errors) => {
-          if (errors.length) {
-            this.setState({errors});
-          } else {
-            console.log(`${title} successfully created`);
-            this.props.history.push('/');
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      }
+      //   data.createCourse(course, authenticatedUser)
+      //   .then((errors) => {
+      //     if (errors.length) {
+      //       this.setState({errors});
+      //     } else {
+      //       console.log(`${title} successfully created`);
+      //       this.props.history.push('/');
+      //     }
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   })
+      // }
 
-      cancel = () => {
-        this.props.history.push('/');
-      }
+      // cancel = () => {
+      //   this.props.history.push('/');
+      // }
 
     }
