@@ -1,35 +1,35 @@
 
-// Private route taken from react auth course
+Private route taken from react auth course
 
-// import React from "react";
-// import { Route, Redirect } from "react-router-dom";
-// import { Consumer } from "../Context";
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { Consumer } from "../Context";
 
 
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   return (
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
 
-//     <Consumer>
-//       {(context) => (
-//         <Route
-//           {...rest}
+    <Consumer>
+      {(context) => (
+        <Route
+          {...rest}
           
-//           render={(props) => context.authenticatedUser ? (
+          render={(props) => context.authenticatedUser ? (
 
-//               <Component {...props} />
-//             ) : (
+              <Component {...props} />
+            ) : (
 
-//               <Redirect to={{
-//                   pathname: "/signin",
-//                   state: { from: props.location },
-//                 }} />
-//             )
-//           }
-//         />
-//       )}
-//     </Consumer>
-//   );
-// };
+              <Redirect to={{
+                  pathname: "/signin",
+                  state: { from: props.location },
+                }} />
+            )
+          }
+        />
+      )}
+    </Consumer>
+  );
+};
 
 
-// export default PrivateRoute;
+export default PrivateRoute;

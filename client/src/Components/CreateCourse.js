@@ -11,7 +11,7 @@ import Form from "./Form";
             description: "",
             estimatedTime: "",
             materialsNeeded: "",
-            //userId: this.props.context.authenticatedUser.id,
+            userId: this.props.context.authenticatedUser.id,
             errors: [],
 
         }
@@ -26,7 +26,7 @@ import Form from "./Form";
             } = this.state;
 
             const {context} = this.props;
-            //const {authenticatedUser} = context;
+            const {authenticatedUser} = context;
      
 
    
@@ -53,7 +53,7 @@ import Form from "./Form";
                         onChange={this.change}
                        
                       />
-                     
+                      <p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
                       <label htmlFor="description">Course Description</label>
                       <textarea
                         id="description"
@@ -92,7 +92,7 @@ import Form from "./Form";
         );
       }
 
-      //<p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
+    
       change = (event) => {
         const name = event.target.name;
         const value = event.target.value;

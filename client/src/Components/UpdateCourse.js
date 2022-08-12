@@ -14,7 +14,7 @@ export default class UpdateCourse extends Component {
       description: "",
       materialsNeeded: "",
       estimatedTime: "",
-      //userId
+      userId: ""
     },
 
     id: this.props.match.params.id,
@@ -48,7 +48,7 @@ export default class UpdateCourse extends Component {
                       id="title"
                       name="title"
                       type="text"
-                      value={course.title}
+                     // value={course.title}
                       onChange={this.change}
                       placeholder={course.title}
                     />
