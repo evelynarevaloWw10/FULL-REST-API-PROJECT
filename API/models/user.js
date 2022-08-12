@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
           msg: 'A  first name is required'
         },
         notEmpty:{
-          mes: 'Please provide a first name'
+          msg: 'Please provide a first name'
         }
       }
     },
@@ -51,18 +51,28 @@ module.exports = (sequelize) => {
         const hashedPassword = bcrypt.hashSync(val, 10);
         this.setDataValue('password', hashedPassword);
       },
-      validate: {
-          notNull: {
-          msg: 'A password is required',
-        },
-        notEmpty: {
-          msg: 'Please provide a password',
-        },
-      },
     },
-    
-    
-  }, { sequelize });
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      set(val){
+          const hashedPassword = bcrypt.hashSync(val, 10);
+          if(val) {
+              this.setDataValue('password', hashedPassword);
+          }
+      },
+      validate:{
+          notNull: {
+              msg: "A password is required",
+          },
+          notEmpty: {
+              msg: 'Please provide a password',
+          },
+      }, 
+  },       
+}, 
+{ sequelize }
+);
 
 User.associate = (models) => {
 // ADD associations 

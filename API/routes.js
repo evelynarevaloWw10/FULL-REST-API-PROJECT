@@ -101,7 +101,7 @@ router.post('/courses', authenticateUser, asyncHandler(async(req,res) =>{
             const errors = error.errors.map(err => err.message);
           
             res.status(400).json({message: "title and description required."});
-            // res.status(400).json({message: "title and description required."});
+            res.status(400).json({error});
         } else{
             throw error;
         }    
