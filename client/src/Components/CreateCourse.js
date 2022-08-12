@@ -126,7 +126,7 @@ import Form from "./Form";
 
         data.createCourse(course, authenticatedUser)
         .then((errors) => {
-          if (errors) {
+          if (errors.length) {
             this.setState({errors});
           } else {
             console.log(`${title} successfully created`);
