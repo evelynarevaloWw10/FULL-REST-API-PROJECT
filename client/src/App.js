@@ -15,7 +15,7 @@ import Courses from './Components/Courses';
 import CourseDetail from './Components/CourseDetail';
 import UpdateCourse from './Components/UpdateCourse';
 import CreateCourse from './Components/CreateCourse';
-
+import PrivateRoute from './Components/PrivateRoute';
 
 import withContext from './Context';
 
@@ -50,7 +50,7 @@ function App() {
         <Switch>
           
           <Route exact path='/' component={CoursesWithContext}/>
-          <Route path='/courses/create'component={CreateCourseWithContext}/>
+          <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
           <Route path='/signup' component={UserSignUpWithContext}/>
           <Route path='/signin' component={UserSignInWithContext}/>
           <Route path='/signout' component={UserSignOutWithContext}/>

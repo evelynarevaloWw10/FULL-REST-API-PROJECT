@@ -102,9 +102,9 @@ async getUpdateCourse(course, user) {
 }
 
 
-async getUpdateCourse(course, user) {
+async putUpdateCourse(course, user) {
   const {emailAddress, password} = user;
-  const response = await this.api(`/courses/${course.id}`, 'GET', course, true, {emailAddress, password});
+  const response = await this.api(`/courses/${course.id}`, 'PUT', course, true, {emailAddress, password});
   if (response.status === 204) {
     return [];
   } else if (response.status === 400) {

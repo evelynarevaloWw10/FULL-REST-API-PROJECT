@@ -1,5 +1,5 @@
 
-Private route taken from react auth course
+//Private route taken from react auth course
 
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
