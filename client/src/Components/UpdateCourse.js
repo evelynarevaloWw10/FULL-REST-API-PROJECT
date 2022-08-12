@@ -23,7 +23,10 @@ export default class UpdateCourse extends Component {
 
 
   render() {
-    const { course, errors, isLoading } = this.state;
+    const { 
+       course,
+       errors, 
+       isLoading } = this.state;
   console.log(course)
   
   

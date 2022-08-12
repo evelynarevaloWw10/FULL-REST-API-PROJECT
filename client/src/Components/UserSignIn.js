@@ -5,7 +5,7 @@ import Form from "./Form";
 
 export default class UserSignIn extends Component {
   state = {
-    username: "",
+    emailAddress: "",
     password: "",
     errors: [],
   };

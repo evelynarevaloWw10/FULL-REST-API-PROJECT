@@ -7,11 +7,11 @@ import Form from "./Form";
  export default class CreateCourse extends Component {
 
         state = {
+            authenticatedUser: this.props.context.authenticatedUser,
             title: "",
             description: "",
             estimatedTime: "",
             materialsNeeded: "",
-          //  userId: this.props.context.authenticatedUser.id,
             errors: [],
 
         }
@@ -23,6 +23,7 @@ import Form from "./Form";
               estimatedTime, 
               materialsNeeded, 
               errors, 
+              authenticatedUser
             } = this.state;
 
             const {context} = this.props;
@@ -56,7 +57,7 @@ import Form from "./Form";
                         onChange={this.change}
                        
                       />
-                      
+                      <p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
                       <label htmlFor="description">Course Description</label>
                       <textarea
                         id="description"
@@ -95,50 +96,50 @@ import Form from "./Form";
         );
       }
      
-      //<p>By: {authenticatedUser.firstName} {authenticatedUser.lastName} </p>
-      // change = (event) => {
-      //   const name = event.target.name;
-      //   const value = event.target.value;
     
-      //   this.setState(() => {
-      //     return {
-      //       [name]: value,
-      //     };
-      //   });
-      // };
+      change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+    
+        this.setState(() => {
+          return {
+            [name]: value,
+          };
+        });
+      };
 
-      // submit = () => {
-      //   const {context} = this.props;
-      //   const {data, authenticatedUser} = context;
-      //   const {title, description, estimatedTime, materialsNeeded} = this.state;
+      submit = () => {
+        const {context} = this.props;
+        const {data, authenticatedUser} = context;
+        const {title, description, estimatedTime, materialsNeeded} = this.state;
 
-        // const course = {
-        //   title,
-        //   description,
-        //   estimatedTime,
-        //   materialsNeeded,
-        //   userId: authenticatedUser.id,
-        //   emailAddress: authenticatedUser.emailAddress,
-        //   password: authenticatedUser.password
-        // }
+        const course = {
+          title,
+          description,
+          estimatedTime,
+          materialsNeeded,
+          userId: authenticatedUser.id,
+          emailAddress: authenticatedUser.emailAddress,
+          password: authenticatedUser.password
+        }
 
 
-      //   data.createCourse(course, authenticatedUser)
-      //   .then((errors) => {
-      //     if (errors.length) {
-      //       this.setState({errors});
-      //     } else {
-      //       console.log(`${title} successfully created`);
-      //       this.props.history.push('/');
-      //     }
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   })
-      // }
+        data.createCourse(course, authenticatedUser)
+        .then((errors) => {
+          if (errors) {
+            this.setState({errors});
+          } else {
+            console.log(`${title} successfully created`);
+            this.props.history.push('/');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
 
-      // cancel = () => {
-      //   this.props.history.push('/');
-      // }
+      cancel = () => {
+        this.props.history.push('/');
+      }
 
     }
