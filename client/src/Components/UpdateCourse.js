@@ -6,7 +6,7 @@ import { Context } from "../Context";
 
  export default function UpdateCourse() {
  
-   const { authenticatedUser, data } = useContext(Context);
+  const { authenticatedUser, data } = useContext(Context);
 
   const [course, setCourse] = useState({
   
@@ -28,7 +28,7 @@ import { Context } from "../Context";
 
 
    useEffect(() => {
-    data.getCourseDetail(id)
+    data.getCourseDetail(course.id)
       .then((course) => {
         if (course) {
           setCourse(course);
@@ -76,7 +76,7 @@ import { Context } from "../Context";
      this.props.history.push(`/courses/${id}`);
     };
 
-
+  
     return (
 
       <div className="wrap">
@@ -99,17 +99,17 @@ import { Context } from "../Context";
                       id="title"
                       name="title"
                       type="text"
-                      value={course.title}
+                      value={course.course.title}
                       onChange={change}
                    
                     />
-                    <p>{`By: ${course.user.firstName} ${course.user.lastName}`}</p>
+                    <p>{`By: ${course.course.user.firstName} ${course.course.user.lastName}`}</p>
                     <label htmlFor="description">Course Description</label>
                     <textarea
                       id="description"
                       name="description"
                       type="text"
-                      value={course.description}
+                      value={course.course.description}
                       onChange={change}
                   
                     />
@@ -120,7 +120,7 @@ import { Context } from "../Context";
                       id="estimatedTime"
                       name="estimatedTime"
                       type="text"
-                      value={course.estimatedTime}
+                      value={course.course.estimatedTime}
                       onChange={change}
                     
                     />
@@ -129,7 +129,7 @@ import { Context } from "../Context";
                       id="materialsNeeded"
                       name="materialsNeeded"
                       type="text"
-                      value={course.materialsNeeded}
+                      value={course.course.materialsNeeded}
                       onChange={change}
                  
                     />

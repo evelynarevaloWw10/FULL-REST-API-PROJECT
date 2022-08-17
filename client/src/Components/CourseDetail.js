@@ -55,18 +55,23 @@ return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {authenticatedUser ? (
+                { course.UserId === authenticatedUser ? (
             <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
-            <React.Fragment>        
+            </React.Fragment>        
+            
                 
                ) : (
 
-            </React.Fragment>  
+            <React.Fragment>  
                     <Link className="button button-secondary" to="/">Return to List</Link>
                   
-             </React.Fragment> )}
+            </React.Fragment> 
+            
+            
+            
+            )}
                 
                  </div>
              
