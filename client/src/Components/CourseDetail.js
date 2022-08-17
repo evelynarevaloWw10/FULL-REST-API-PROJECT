@@ -47,18 +47,31 @@ const deleteButton = () => {
 
 //used link and reactMarkdown to be able to make information dynamic also to be able to link up my link buttons to correct routes
 
+//{if(authenticatedUser.id && course.userId)}
+//{ authenticatedUser.id === course.userId }
+
 
 return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                
+                {authenticatedUser ? (
+            <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
-                    <Link className="button button-secondary" to="/">Return to List</Link>
-                </div>
-            </div>
+            <React.Fragment>        
+                
+               ) : (
 
+            </React.Fragment>  
+                    <Link className="button button-secondary" to="/">Return to List</Link>
+                  
+             </React.Fragment> )}
+                
+                 </div>
+             
+            </div>
+              
 {isLoading ? (<h2>Loading...</h2> ):(
             <div className="wrap">
                 <h2>Course Detail</h2>
