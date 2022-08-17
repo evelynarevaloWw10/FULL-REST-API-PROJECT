@@ -47,13 +47,14 @@ const deleteButton = () => {
 
 //used link and reactMarkdown to be able to make information dynamic also to be able to link up my link buttons to correct routes
 
+
 return (
-  
   <main>
             <div className="actions--bar">
                 <div className="wrap">
+                
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
-                    <Link className="button" onClick={deleteButton}>Delete Course</Link>
+                    <button className="button" onClick={deleteButton}>Delete Course</button>
                     <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>
             </div>
@@ -66,7 +67,7 @@ return (
                         <div>
                             <h3 className="course--detail--title">Course</h3>
                             <h4 className="course--name">{course.course.title}</h4>
-                            <p><p>{`${course.course.User.firstName} ${course.course.User.lastName}`}</p></p>
+                            <p>{`${course.course.user.firstName} ${course.course.user.lastName}`}</p>
                             
                             <ReactMarkdown className="course--description" children={course.course.description} />
                         </div>

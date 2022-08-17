@@ -1,47 +1,94 @@
 // // // //Stateful Component 
-import React, {Component} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import Form from "./Form";
+import { Context } from "../Context";
 
+ export default function UpdateCourse() {
+ 
+   const { authenticatedUser, data } = useContext(Context);
 
-export default class UpdateCourse extends Component {
-
-  state = {
-    authenticatedUser: this.props.context.authenticatedUser,
-    data: this.props.context.data,
-    isLoading: true,
-    course: {
-      User: {},
+  const [course, setCourse] = useState({
+  
+      user: {},
       title: "",
       description: "",
       materialsNeeded: "",
       estimatedTime: "",
-      userId: ""
-    },
+      userId: "",
+      emailAddress: authenticatedUser.emailAddress,
+      password: authenticatedUser.password  
+    })
 
-    id: this.props.match.params.id,
-    errors: [],
+    const { id } = useParams();
+    const history = useHistory();
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+
+
+   useEffect(() => {
+    data.getCourseDetail(id)
+      .then((course) => {
+        if (course) {
+          setCourse(course);
+
+          
+          setIsLoading(false);
+       if (course.userId !== authenticatedUser.id) {
+        
+            history.push("/forbidden");
+          }
+        }
+      })
+      .catch((errors) => {
+        console.log(errors);
+        history.push("/error");
+      });
+  }, []);
+
+  const change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setCourse((course) => ({ ...course, [name]: value }));
   };
 
+  const submit = () => {
+  
+    data.updateCourse(course, authenticatedUser)
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+          console.log(errors);
+        } else {
+          history.push(`/courses/${id}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
 
-  render() {
-    const { 
-       course,
-       errors, 
-       isLoading } = this.state;
-  console.log(course)
-  
-  
-    //https://magic.reactjs.net/htmltojsx.htm
+        history.push("/error");
+      });
+  };
+
+    const cancel = () => {
+     const { id } = this.state;
+     this.props.history.push(`/courses/${id}`);
+    };
+
 
     return (
 
       <div className="wrap">
+   {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
         <>
           <h2>Update Course</h2>
           <Form
-            cancel={this.cancel}
+            cancel={cancel}
             errors={errors}
-            submit={this.submit}
+            submit={submit}
             submitButtonText="Update Course"
             elements={() => (
               <React.Fragment>
@@ -53,17 +100,17 @@ export default class UpdateCourse extends Component {
                       name="title"
                       type="text"
                       value={course.title}
-                      onChange={this.change}
+                      onChange={change}
                    
                     />
-                    <p>{`By: ${course.User.firstName} ${course.User.lastName}`}</p>
+                    <p>{`By: ${course.user.firstName} ${course.user.lastName}`}</p>
                     <label htmlFor="description">Course Description</label>
                     <textarea
                       id="description"
                       name="description"
                       type="text"
                       value={course.description}
-                      onChange={this.change}
+                      onChange={change}
                   
                     />
                   </div>
@@ -74,7 +121,7 @@ export default class UpdateCourse extends Component {
                       name="estimatedTime"
                       type="text"
                       value={course.estimatedTime}
-                      onChange={this.change}
+                      onChange={change}
                     
                     />
                     <label htmlFor="materialsNeeded">Materials Needed</label>
@@ -83,7 +130,7 @@ export default class UpdateCourse extends Component {
                       name="materialsNeeded"
                       type="text"
                       value={course.materialsNeeded}
-                      onChange={this.change}
+                      onChange={change}
                  
                     />
                   </div>
@@ -92,39 +139,41 @@ export default class UpdateCourse extends Component {
             )}
           />
         </>
+        )}
       </div>
     );
   }
 
 
-  componentDidMount() {
-    const { authenticatedUser, data, course, id } = this.state;
+  // componentDidMount() {
+  //   const { authenticatedUser, data, course, id } = this.state;
 
-    data.getCourseDetail(id)
-      .then((course) => {
-        if (course) {
-          this.setState(course);
-          console.log(course);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
+  //   data.getCourseDetail(id)
+  //     .then((course) => {
+  //       if (course) {
+  //         this.setState(course);
+  //         console.log(course);
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
-  change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  // change = (event) => {
+  //   const name = event.target.name;
+  //   const value = event.target.value;
 
-    this.setState(() => {
-      return {
-        [name]: value,
-      };
-    });
-  };
+  //   this.setState(() => {
+  //     return {
+  //       [name]: value,
+  //     };
+  //   });
+  // };
 
-   cancel = () => {
-     const { id } = this.state;
-     this.props.history.push(`/courses/${id}`);
-    };
+  //  cancel = () => {
+  //    const { id } = this.state;
+  //    this.props.history.push(`/courses/${id}`);
+  //    };
 
-   }
+   
 
+ 

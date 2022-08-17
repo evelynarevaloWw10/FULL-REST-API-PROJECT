@@ -7,7 +7,7 @@ import Form from "./Form";
  export default class CreateCourse extends Component {
 
         state = {
-            authenticatedUser: this.props.context.authenticatedUser,
+            userId: this.props.context.authenticatedUser.id,
             title: "",
             description: "",
             estimatedTime: "",
@@ -23,11 +23,11 @@ import Form from "./Form";
               estimatedTime, 
               materialsNeeded, 
               errors, 
-              authenticatedUser
+              //authenticatedUser
             } = this.state;
 
             const {context} = this.props;
-           // const {authenticatedUser} = context;
+            const {authenticatedUser} = context;
             //console.log(authenticatedUser);
 
    

@@ -132,21 +132,17 @@ async createCourse(course) {
   }
 }
 
-async deleteCourse(course, user) {
-  const {emailAddress, password} = user;
-  const response = await this.api(`/courses/${course.id}`, 'DELETE', course, true, {emailAddress, password} );
-  if (response.status === 201) {
+async deleteCourse(id, user) {
+  const {emailAddress, password } = user;
+  const response = await this.api(`/courses/${id}`, 'DELETE', {}, true, {emailAddress, password});
+  if (response.status === 204) {
     return [];
   }
-  else if (response.status === 400) {
-    return response.json().then(data => {
-      return data.errors;
-    });
-  }
-  else {
+   else {
     throw new Error();
+    
   }
-}
+} 
 
 
 }
