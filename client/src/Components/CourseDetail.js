@@ -58,11 +58,12 @@ console.log(authenticatedUser)
 console.log(course.id)
 
 
+
 return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                { authenticatedUser.id && authenticatedUser ? (
+                { authenticatedUser.id && course.id ? (
             <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
