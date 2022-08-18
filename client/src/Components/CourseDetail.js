@@ -23,7 +23,7 @@ export default function CourseDetail(props){
       .then((res) => setCourse(res))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [id]);
 
 
 const deleteButton = () => {
@@ -48,13 +48,6 @@ const deleteButton = () => {
 // //https://magic.reactjs.net/htmltojsx.htm html to jsx compiler
 
 //used link and reactMarkdown to be able to make information dynamic also to be able to link up my link buttons to correct routes
-
-//{if(authenticatedUser.id && course.userId)}
-//{ authenticatedUser.id === course.userId }
-
-//authenticatedUser && authenticatedUser === course.userId ?
-
-
 
 
 

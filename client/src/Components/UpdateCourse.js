@@ -8,7 +8,7 @@ import { Context } from "../Context";
 
 
  const { authenticatedUser, data } = useContext(Context);
-  const authUser = authenticatedUser.context
+
 
 //https://reactjs.org/docs/hooks-state.html
 
@@ -19,13 +19,6 @@ import { Context } from "../Context";
   const [description, setDescription] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
   const [materialsNeeded, setMaterialsNeeded] = useState('');
- 
-
-  //Not sure if I will need these
-      // emailAddress: authenticatedUser.emailAddress,
-      // password: authenticatedUser.password  
-    
-
     const { id } = useParams();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
@@ -54,7 +47,7 @@ import { Context } from "../Context";
         console.log(errors);
         history.push("/error");
       });
-  }, [id]);
+  }, [id, history, data, authenticatedUser.id]);
 
   //trying to use switch to use the set() method for values with empty state
   //https://stackoverflow.com/questions/56802646/setting-the-state-with-the-switch-instruction-in-the-react
@@ -198,39 +191,7 @@ import { Context } from "../Context";
 
 
 
-  //<p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
-
-
-
-  // componentDidMount() {
-  //   const { authenticatedUser, data, course, id } = this.state;
-
-  //   data.getCourseDetail(id)
-  //     .then((course) => {
-  //       if (course) {
-  //         this.setState(course);
-  //         console.log(course);
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
-  // change = (event) => {
-  //   const name = event.target.name;
-  //   const value = event.target.value;
-
-  //   this.setState(() => {
-  //     return {
-  //       [name]: value,
-  //     };
-  //   });
-  // };
-
-  //  cancel = () => {
-  //    const { id } = this.state;
-  //    this.props.history.push(`/courses/${id}`);
-  //    };
-
+  
    
 
  
