@@ -19,7 +19,7 @@ import { Context } from "../Context";
   const [description, setDescription] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
   const [materialsNeeded, setMaterialsNeeded] = useState('');
-  const [userId, setUserId] = useState('');
+ 
 
   //Not sure if I will need these
       // emailAddress: authenticatedUser.emailAddress,
@@ -44,7 +44,9 @@ import { Context } from "../Context";
           setIsLoading(false);
        if (course.userId !== authenticatedUser.id) {
         setTitle(course.course.title);
-            
+        setDescription(course.course.description)
+        setEstimatedTime(course.course.estimatedTime)
+        setMaterialsNeeded(course.course.materialsNeeded)  
           }
         }
       })
@@ -72,32 +74,29 @@ import { Context } from "../Context";
       case "materialsNeeded":
         setMaterialsNeeded(value);
         break;
-      case "userId":
-      setUserId(value);
-       break;
       default:
       return;
       
     };
 
-  };
+   };
 
 
  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-const  newUpdateCourse = course.course
-const newCourse = newUpdateCourse.create(
-  newCourse.title,
-  newCourse.description,
-  newCourse.estimatedTime,
-  newCourse.materialsNeeded
+// const  newUpdateCourse = course.course
+// const newCourse = newUpdateCourse.create(
+//   newCourse.title,
+//   newCourse.description,
+//   newCourse.estimatedTime,
+//   newCourse.materialsNeeded
 
- )
+//  )
 
 
   
 
   const submit = () => {
-    data.putUpdateCourse(newCourse, authenticatedUser)
+    data.putUpdateCourse(course.course, authenticatedUser)
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
