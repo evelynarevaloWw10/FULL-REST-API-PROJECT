@@ -53,12 +53,16 @@ const deleteButton = () => {
 //{ authenticatedUser.id === course.userId }
 
 //authenticatedUser && authenticatedUser === course.userId ?
+console.log(authenticatedUser.id )
+console.log(authenticatedUser)
+console.log(course.id)
+
 
 return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                { authenticatedUser ? (
+                { authenticatedUser.id && authenticatedUser ? (
             <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
