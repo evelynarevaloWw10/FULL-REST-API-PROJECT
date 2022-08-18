@@ -34,25 +34,25 @@ import { Context } from "../Context";
 
 
 
-  //  useEffect(() => {
-  //   data.getCourseDetail(id)
-  //     .then((course) => {
-  //       if (course) {
-  //         setCourse(course);
+   useEffect(() => {
+    data.getCourseDetail(id)
+      .then((course) => {
+        if (course) {
+          setCourse(course);
 
           
-  //         setIsLoading(false);
-  //      if (course.userId !== authenticatedUser.id) {
+          setIsLoading(false);
+       if (course.userId !== authenticatedUser.id) {
         
-  //           
-  //         }
-  //       }
-  //     })
-  //     .catch((errors) => {
-  //       console.log(errors);
-  //       history.push("/error");
-  //     });
-  // }, []);
+            
+          }
+        }
+      })
+      .catch((errors) => {
+        console.log(errors);
+        history.push("/error");
+      });
+  }, []);
 
   const change = (event) => {
     const name = event.target.name;
@@ -110,7 +110,7 @@ import { Context } from "../Context";
                      onChange={change}
                   
                    />
-                   <p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
+                   <p>{`By: ${course.course.user.firstName} ${course.course.user.lastName}`}</p>
                    <label htmlFor="description">Course Description</label>
                    <textarea
                      id="description"
@@ -163,7 +163,7 @@ import { Context } from "../Context";
 
 
 
-
+  //<p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
 
 
 
