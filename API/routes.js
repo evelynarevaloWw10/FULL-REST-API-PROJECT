@@ -31,6 +31,7 @@ router.get('/users', authenticateUser ,asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             emailAddress: user.emailAddress,
+            id: user.id
      });
   }));
 
@@ -60,6 +61,7 @@ router.get('/courses', asyncHandler(async(req, res) =>{
       include: [ 
           {
             model: User,
+            as: 'user',
             attributes: ['firstName', 'lastName', 'emailAddress'] 
           },
         ],through: {
@@ -79,6 +81,7 @@ router.get('/courses/:id', asyncHandler(async(req,res) =>{
       include: [ 
           {
             model: User,
+            as: 'user',
           
           },
         ]
@@ -99,7 +102,6 @@ router.post('/courses', authenticateUser, asyncHandler(async(req,res) =>{
     } catch (error) {
         if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
             const errors = error.errors.map(err => err.message);
-          
             res.status(400).json({errors});
         } else{
             throw error;
@@ -130,17 +132,17 @@ let course ;
 
 //api/courses/:id DELETE route that will delete the corresponding course and return a 204 HTTP status code and no content.
 router.delete('/courses/:id',authenticateUser, asyncHandler(async(req,res) =>{ // use from project 
-    const course = await Course.findByPk(req.params.id);
+  const user = req.currentUser;  
+  const course = await Course.findByPk(req.params.id);
     if (course) {
-      if (req.currentUser.id === course.userId){
+      if (user.id === course.userId){
         await course.destroy();
         res.status(204).end();
       } else {
-        res.status(400).end();
+        res.status(403).end();
       }
     } else {
       res.sendStatus(404);
     }}
     ))
-
  module.exports = router;
