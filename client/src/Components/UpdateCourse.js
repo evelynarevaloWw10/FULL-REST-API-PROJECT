@@ -82,6 +82,18 @@ import { Context } from "../Context";
 
   };
 
+// const  newUpdateCourse = {};
+// const newCourse = newUpdateCourse.create(
+//   title,
+//   description,
+//   estimatedTime,
+//   materialsNeeded
+
+// )
+
+
+  
+
   const submit = () => {
     data.putUpdateCourse(course.course, authenticatedUser)
       .then((errors) => {
@@ -126,7 +138,7 @@ import { Context } from "../Context";
                      id="title"
                      name="title"
                      type="text"
-                     value={course.course.title}
+                     value={title}
                      onChange={change}
                   
                    />
@@ -136,7 +148,7 @@ import { Context } from "../Context";
                      id="description"
                      name="description"
                      type="text"
-                     value={course.course.description}
+                     value={description}
                      onChange={change}
                  
                    />
@@ -147,7 +159,7 @@ import { Context } from "../Context";
                      id="estimatedTime"
                      name="estimatedTime"
                      type="text"
-                     value={course.course.estimatedTime}
+                     value={estimatedTime}
                      onChange={change}
                    
                    />
@@ -156,7 +168,7 @@ import { Context } from "../Context";
                      id="materialsNeeded"
                      name="materialsNeeded"
                      type="text"
-                     value={course.course.materialsNeeded}
+                     value={materialsNeeded}
                      onChange={change}
                 
                    />
