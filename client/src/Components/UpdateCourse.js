@@ -7,10 +7,14 @@ import { Context } from "../Context";
  export default function UpdateCourse() {
 
 
- 
+
   const { authenticatedUser, data } = useContext(Context);
 
+  // //console.log(course.userId)
+  // console.log(authenticatedUser.id)
+
   const [course, setCourse] = useState({
+   
   
       user: {},
       title: "",
@@ -26,29 +30,29 @@ import { Context } from "../Context";
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const context = useContext(Context);
 
 
 
-   useEffect(() => {
-    data.getCourseDetail(course.id)
-      .then((course) => {
-        if (course) {
-          setCourse(course);
+
+  //  useEffect(() => {
+  //   data.getCourseDetail(id)
+  //     .then((course) => {
+  //       if (course) {
+  //         setCourse(course);
 
           
-          setIsLoading(false);
-       if (course.userId !== authenticatedUser.id) {
+  //         setIsLoading(false);
+  //      if (course.userId !== authenticatedUser.id) {
         
-            history.push("/forbidden");
-          }
-        }
-      })
-      .catch((errors) => {
-        console.log(errors);
-        history.push("/error");
-      });
-  }, []);
+  //           
+  //         }
+  //       }
+  //     })
+  //     .catch((errors) => {
+  //       console.log(errors);
+  //       history.push("/error");
+  //     });
+  // }, []);
 
   const change = (event) => {
     const name = event.target.name;
@@ -81,71 +85,86 @@ import { Context } from "../Context";
 
   
     return (
-
-      <div className="wrap">
-   {isLoading ? (
-        <h2>Loading...</h2>
-      ) : (
-        <>
-          <h2>Update Course</h2>
-          <Form
-            cancel={cancel}
-            errors={errors}
-            submit={submit}
-            submitButtonText="Update Course"
-            elements={() => (
-              <React.Fragment>
-                <div className="main--flex">
-                  <div>
-                    <label htmlFor="title">Course Title</label>
-                    <input
-                      id="title"
-                      name="title"
-                      type="text"
-                      value={course.course.title}
-                      onChange={change}
-                   
-                    />
-                    <p>{`By: ${course.course.user.firstName} ${course.course.user.lastName}`}</p>
-                    <label htmlFor="description">Course Description</label>
-                    <textarea
-                      id="description"
-                      name="description"
-                      type="text"
-                      value={course.course.description}
-                      onChange={change}
+   
+ <div className="wrap">
+  {isLoading ? (
+       <h2>Loading...</h2>
+     ) : (
+       <>
+         <h2>Update Course</h2>
+         <Form
+           cancel={cancel}
+           errors={errors}
+           submit={submit}
+           submitButtonText="Update Course"
+           elements={() => (
+             <React.Fragment>
+               <div className="main--flex">
+                 <div>
+                   <label htmlFor="title">Course Title</label>
+                   <input
+                     id="title"
+                     name="title"
+                     type="text"
+                     value={course.course.title}
+                     onChange={change}
                   
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="estimatedTime">Estimated Time</label>
-                    <input
-                      id="estimatedTime"
-                      name="estimatedTime"
-                      type="text"
-                      value={course.course.estimatedTime}
-                      onChange={change}
-                    
-                    />
-                    <label htmlFor="materialsNeeded">Materials Needed</label>
-                    <textarea
-                      id="materialsNeeded"
-                      name="materialsNeeded"
-                      type="text"
-                      value={course.course.materialsNeeded}
-                      onChange={change}
+                   />
+                   <p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
+                   <label htmlFor="description">Course Description</label>
+                   <textarea
+                     id="description"
+                     name="description"
+                     type="text"
+                     value={course.course.description}
+                     onChange={change}
                  
-                    />
-                  </div>
-                </div>
-              </React.Fragment>
-            )}
-          />
-        </>
-        )}
-      </div>
-    );
+                   />
+                 </div>
+                 <div>
+                   <label htmlFor="estimatedTime">Estimated Time</label>
+                   <input
+                     id="estimatedTime"
+                     name="estimatedTime"
+                     type="text"
+                     value={course.course.estimatedTime}
+                     onChange={change}
+                   
+                   />
+                   <label htmlFor="materialsNeeded">Materials Needed</label>
+                   <textarea
+                     id="materialsNeeded"
+                     name="materialsNeeded"
+                     type="text"
+                     value={course.course.materialsNeeded}
+                     onChange={change}
+                
+                   />
+                 </div>
+               </div>
+             </React.Fragment>
+           )}
+         />
+       </>
+       )}
+     </div>
+   );
+
+     
   }
+
+
+
+
+  
+
+
+
+
+
+
+
+
 
 
   // componentDidMount() {
