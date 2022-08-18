@@ -8,7 +8,7 @@ import { Context } from "../Context";
 
 
  const { authenticatedUser, data } = useContext(Context);
-  
+  const authUser = authenticatedUser.context
 
 //https://reactjs.org/docs/hooks-state.html
 
@@ -54,7 +54,7 @@ import { Context } from "../Context";
         console.log(errors);
         history.push("/error");
       });
-  }, []);
+  }, [id]);
 
   //trying to use switch to use the set() method for values with empty state
   //https://stackoverflow.com/questions/56802646/setting-the-state-with-the-switch-instruction-in-the-react
@@ -83,20 +83,22 @@ import { Context } from "../Context";
 
 
  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-// const  newUpdateCourse = course.course
-// const newCourse = newUpdateCourse.create(
-//   newCourse.title,
-//   newCourse.description,
-//   newCourse.estimatedTime,
-//   newCourse.materialsNeeded
-
-//  )
 
 
-  
 
   const submit = () => {
-    data.putUpdateCourse(course.course, authenticatedUser)
+    
+
+    data.putUpdateCourse(
+      {id: course.course.id,
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+      userId: authenticatedUser.id,
+     },
+
+    authenticatedUser)
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);

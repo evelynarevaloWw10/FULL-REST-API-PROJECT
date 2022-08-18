@@ -55,7 +55,6 @@ export default class Data {
   }
 
 
-
 //https://teamtreehouse.com/library/react-authentication/implementing-basic-authentication/set-up-user-registration 
 
  async getCourse() {
