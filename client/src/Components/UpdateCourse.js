@@ -82,20 +82,22 @@ import { Context } from "../Context";
 
   };
 
-// const  newUpdateCourse = {};
-// const newCourse = newUpdateCourse.create(
-//   title,
-//   description,
-//   estimatedTime,
-//   materialsNeeded
 
-// )
+ // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+const  newUpdateCourse = course.course
+const newCourse = newUpdateCourse.create(
+  newCourse.title,
+  newCourse.description,
+  newCourse.estimatedTime,
+  newCourse.materialsNeeded
+
+ )
 
 
   
 
   const submit = () => {
-    data.putUpdateCourse(course.course, authenticatedUser)
+    data.putUpdateCourse(newCourse, authenticatedUser)
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
