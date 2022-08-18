@@ -5,6 +5,8 @@ import Form from "./Form";
 import { Context } from "../Context";
 
  export default function UpdateCourse() {
+
+
  
   const { authenticatedUser, data } = useContext(Context);
 
@@ -24,6 +26,7 @@ import { Context } from "../Context";
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const context = useContext(Context);
 
 
 
@@ -103,7 +106,7 @@ import { Context } from "../Context";
                       onChange={change}
                    
                     />
-                    <p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
+                    <p>{`By: ${course.course.user.firstName} ${course.course.user.lastName}`}</p>
                     <label htmlFor="description">Course Description</label>
                     <textarea
                       id="description"

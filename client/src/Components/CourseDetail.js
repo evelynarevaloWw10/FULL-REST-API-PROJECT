@@ -16,7 +16,10 @@ export default function CourseDetail(props){
   const [isLoading, setIsLoading] = useState(true);
 
 
-
+  console.log(authenticatedUser)
+  console.log(course.id)
+  console.log(props.context)
+ console.log(course)
 
 
   //use effect hook calling getCourse() GET request from data.js then setting response to equal setCourse function. Had issues fetching data//not fast enough so added finally to make sure that it would not continue running program until loading was false
@@ -54,11 +57,12 @@ const deleteButton = () => {
 //{ authenticatedUser.id === course.userId }
 
 
+
 return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                {  authenticatedUser.emailAddress ? (
+                { !authenticatedUser && authenticatedUser === course.id ? (
             <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
