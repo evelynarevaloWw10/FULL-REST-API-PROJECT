@@ -61,8 +61,7 @@ import { Context } from "../Context";
   };
 
   const submit = () => {
-  
-    data.updateCourse(course, authenticatedUser)
+    data.putUpdateCourse(course.course, authenticatedUser)
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
