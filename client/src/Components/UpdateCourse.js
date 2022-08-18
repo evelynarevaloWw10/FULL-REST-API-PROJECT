@@ -103,7 +103,7 @@ import { Context } from "../Context";
                       onChange={change}
                    
                     />
-                    <p>{`By: ${course.course.user.firstName} ${course.course.user.lastName}`}</p>
+                    <p>{`By: ${course.course.User.firstName} ${course.course.User.lastName}`}</p>
                     <label htmlFor="description">Course Description</label>
                     <textarea
                       id="description"
