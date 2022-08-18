@@ -63,7 +63,7 @@ return (
   <main>
             <div className="actions--bar">
                 <div className="wrap">
-                { authenticatedUser.id && course.id ? (
+                { authenticatedUser && course.course && authenticatedUser.id === course.course.userId? (
             <React.Fragment>
                     <Link className="button" to={`/courses/${id}/update`}>Update Course</Link>
                     <button className="button" onClick={deleteButton}>Delete Course</button>
