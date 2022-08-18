@@ -53,9 +53,8 @@ const deleteButton = () => {
 //{ authenticatedUser.id === course.userId }
 
 //authenticatedUser && authenticatedUser === course.userId ?
-console.log(authenticatedUser.id )
-console.log(authenticatedUser)
-console.log(course.id)
+
+
 
 
 

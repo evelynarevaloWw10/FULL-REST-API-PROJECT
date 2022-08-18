@@ -7,24 +7,24 @@ import { Context } from "../Context";
  export default function UpdateCourse() {
 
 
-
-  const { authenticatedUser, data } = useContext(Context);
-
-  // //console.log(course.userId)
-  // console.log(authenticatedUser.id)
-
-  const [course, setCourse] = useState({
-   
+ const { authenticatedUser, data } = useContext(Context);
   
-      user: {},
-      title: "",
-      description: "",
-      materialsNeeded: "",
-      estimatedTime: "",
-      userId: "",
-      emailAddress: authenticatedUser.emailAddress,
-      password: authenticatedUser.password  
-    })
+
+//https://reactjs.org/docs/hooks-state.html
+
+
+//assigning each variable state instead of just having course have state in one object, which did not allow me to update the value of state further down
+  const [course, setCourse] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [estimatedTime, setEstimatedTime] = useState('');
+  const [materialsNeeded, setMaterialsNeeded] = useState('');
+  const [userId, setUserId] = useState('');
+
+  //Not sure if I will need these
+      // emailAddress: authenticatedUser.emailAddress,
+      // password: authenticatedUser.password  
+    
 
     const { id } = useParams();
     const history = useHistory();
@@ -33,17 +33,17 @@ import { Context } from "../Context";
 
 
 
-
+//useEffect is used to fetch the data 
    useEffect(() => {
     data.getCourseDetail(id)
       .then((course) => {
         if (course) {
           setCourse(course);
 
-          
+          //setIsLoading is checking if data is too slow and will not rendering if loading
           setIsLoading(false);
        if (course.userId !== authenticatedUser.id) {
-        
+        setTitle(course.course.title);
             
           }
         }
@@ -54,10 +54,32 @@ import { Context } from "../Context";
       });
   }, []);
 
-  const change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setCourse((course) => ({ ...course, [name]: value }));
+  //trying to use switch to use the set() method for values with empty state
+  //https://stackoverflow.com/questions/56802646/setting-the-state-with-the-switch-instruction-in-the-react
+
+   const change = (event) => {
+    const value = event.target.value
+    switch (event.target.name) {
+      case "title":
+        setTitle(value);
+        break;
+      case "description":
+        setDescription(value);
+         break;
+         case "estimatedTime":
+        setEstimatedTime(value);
+        break;
+      case "materialsNeeded":
+        setMaterialsNeeded(value);
+        break;
+      case "userId":
+      setUserId(value);
+       break;
+      default:
+      return;
+      
+    };
+
   };
 
   const submit = () => {
@@ -77,10 +99,9 @@ import { Context } from "../Context";
       });
   };
 
-    const cancel = () => {
-     const { id } = this.state;
-     this.props.history.push(`/courses/${id}`);
-    };
+  const cancel = () => {
+    history.push(`/courses/${id}`);
+  };
 
   
     return (
